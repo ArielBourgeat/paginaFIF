@@ -2,7 +2,7 @@ import { COURSES, courseAgeKey } from "./courses";
 
 export const SUBJECTS = [
   { id: "programacion", label: "Programación", cover: "code", color: "#42a5f5", courses: ["programacion-teoria", "programacion-practica", "programacion-lecturas", "programacion-2"] },
-  { id: "matematica", label: "Matemática", cover: "chalkboard", color: "#ffd56a", courses: ["matematica-teoria", "matematica-practica", "matematica-lecturas", "geometria", "algebra", "matematica-cotidiana"] },
+  { id: "matematica", label: "Matemática", cover: "chalkboard", color: "#ffd56a", courses: ["matematica-teoria", "matematica-practica", "geometria", "algebra"] },
   { id: "arte", label: "Arte", cover: "starry", color: "#f06292", courses: ["arte-teoria", "arte-practica", "arte-lecturas", "historia-arte"] },
   { id: "musica", label: "Música", cover: "music", color: "#4dd0e1", courses: ["musica-teoria", "musica-practica", "musica-lecturas"] },
 ];

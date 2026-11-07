@@ -22,7 +22,7 @@ export default function Login() {
       return;
     }
     navigate(homePath(result.account));
-  };z
+  };
 
   return (
     <div className="onboard">

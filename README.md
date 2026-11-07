@@ -334,10 +334,10 @@ Definidas en `src/App.jsx` (públicas) y `src/PlatformRoutes.jsx` (plataforma).
 
 El estudiante **no** ve 16 chips sueltos. Ve 3 o 4 **materias** (`SUBJECTS` en `teacher.js`):
 
-| Materia | Minijuegos (ejemplos) | Quién la ve |
+| Materia | Minijuegos de refuerzo | Quién la ve |
 |---|---|---|
 | Programación | teoría, práctica, lecturas, programación 2 | Inicial y regular |
-| Matemática | teoría, práctica, lecturas, geometría, álgebra, cotidiana | Inicial y regular |
+| Matemática | Combinatoria, Teoría de números, Geometría, Álgebra (sílabo olímpico FIF Learning) | Inicial y regular |
 | Música | teoría, práctica, lecturas | Inicial y regular |
 | Arte | teoría, práctica, lecturas, historia | **Solo inicial / nivelación** |
 

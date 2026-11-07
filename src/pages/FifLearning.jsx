@@ -101,7 +101,8 @@ export default function FifLearning() {
               FIF Learning es el espacio digital de refuerzo académico de la Fundación Integral de
               Familias. Ofrece lecciones cortas, ejercicios interactivos y un registro de progreso
               (puntos, racha e insignias) pensado para practicar en casa, no para reemplazar la
-              escuela.
+              escuela. En Matemática el refuerzo sigue el sílabo olímpico: Combinatoria, Teoría de
+              números, Geometría y Álgebra.
             </p>
           </div>
           <img src="/images/family-sun.jpg" alt="Ilustración de una familia junta, símbolo de acompañamiento" className="character" />
@@ -142,9 +143,10 @@ export default function FifLearning() {
           <h2 className="landing-kicker" style={{ color: "#1d4ed8", textAlign: "center" }}>Nuestros cursos</h2>
           <div className="courses-grid">
             <p className="section-copy">
-              Oferta: Programación, Matemática, Arte y Música. Cada curso incluye trabajos del
-              profesor y minijuegos de refuerzo. Arte corresponde al grupo inicial / nivelación;
-              el grupo regular no lo incluye. Completar un curso no equivale a un título oficial.
+              Oferta: Programación, Matemática, Arte y Música. Cada clase incluye trabajos del
+              profesor y minijuegos de refuerzo. Matemática se organiza en los cuatro ejes del
+              sílabo olímpico. Arte corresponde al grupo inicial / nivelación; el grupo regular
+              no lo incluye. Completar un curso no equivale a un título oficial.
             </p>
             <div className="course-list">
               {(user?.ageGroup ? subjectsForAge(user.ageGroup) : SUBJECTS).map((subject) => (

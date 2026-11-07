@@ -52,16 +52,19 @@ const ABOUT_BANDS = [
 
 const TEAM = [
   {
-    name: "Diego y Gabi",
+    name: "Gabi y Diego",
     image: "/images/Diego_Gaby.avif",
+    photoPosition: "center 70%",
   },
   {
     name: "Anabelle Chacón",
     image: "/images/Anabelle_Chacon.avif",
+    photoPosition: "center 22%",
   },
   {
     name: "Alex Pico",
     image: "/images/Alex_Pico.avif",
+    photoPosition: "center 12%",
   },
 ];
 
@@ -157,6 +160,7 @@ function IconSocial({ name }) {
     instagram: <path d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5Zm8 2H8a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3Zm-4 3.2A4.8 4.8 0 1 1 7.2 13 4.8 4.8 0 0 1 12 8.2Zm0 2A2.8 2.8 0 1 0 14.8 13 2.8 2.8 0 0 0 12 10.2ZM17.4 6.3a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z" />,
     tiktok: <path d="M14.2 3h3.1c.3 2.4 1.6 4.2 4.2 4.5v3.1c-1.4 0-2.7-.4-4.1-1.2v6.8A6.7 6.7 0 1 1 9.2 9.6v3.3a3.5 3.5 0 1 0 2.5 3.3V3Z" />,
     linkedin: <path d="M6.5 9H3.6v12h2.9V9ZM5 3.4A1.7 1.7 0 1 0 5 6.8 1.7 1.7 0 0 0 5 3.4ZM20.4 9c-2.3 0-3.7 1.2-4.3 2.4V9h-2.9v12h2.9v-6.4c0-1.7.9-2.8 2.4-2.8s2.2.9 2.2 2.8V21H21V14c0-3-1.5-5-4.6-5Z" />,
+    youtube: <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12Z" />,
   };
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className="lp-social-icon">
@@ -437,7 +441,13 @@ export default function Landing() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                <img src={member.image} alt={member.name} loading="lazy" decoding="async" />
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  loading="lazy"
+                  decoding="async"
+                  style={member.photoPosition ? { objectPosition: member.photoPosition } : undefined}
+                />
 
                 <div className="lp-team-name">
                   <h3>{member.name}</h3>
@@ -539,7 +549,10 @@ export default function Landing() {
                   ))}
                 </div>
               </div>
-              <a href={ORG.social.youtube} target="_blank" rel="noreferrer">
+              <a className="lp-media-youtube" href={ORG.social.youtube} target="_blank" rel="noreferrer">
+                <span className="lp-yt-badge" aria-hidden="true">
+                  <IconSocial name="youtube" />
+                </span>
                 <span>YouTube</span>
                 <strong>Canal FIF</strong>
               </a>
