@@ -667,6 +667,28 @@ h3,
   gap: 18px;
 }
 
+.subject-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+
+.subject-tabs button {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 800;
+  background: #e5e7eb;
+  color: #111827;
+  cursor: pointer;
+}
+
+.subject-tabs button.is-on {
+  background: #1d4ed8;
+  color: #fff;
+}
+
 .cover-card {
   cursor: pointer;
   background: transparent;
@@ -1068,6 +1090,7 @@ h3,
 
 .modal {
   background: #fff;
+  color: #10233a;
   border-radius: 24px;
   padding: 28px;
   max-width: 520px;
@@ -1075,6 +1098,20 @@ h3,
   box-shadow: var(--shadow);
   max-height: min(90vh, 820px);
   overflow: auto;
+}
+
+.modal h3,
+.modal p,
+.modal label,
+.modal .check-line {
+  color: #10233a;
+}
+
+.modal .pill-input,
+.modal .pill-select,
+.modal textarea {
+  color: #10233a;
+  caret-color: #10233a;
 }
 
 .modal.modal-slides {

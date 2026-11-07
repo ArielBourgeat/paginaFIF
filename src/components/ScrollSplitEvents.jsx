@@ -59,7 +59,8 @@ export function ScrollSplitEvents({ imageSrc, cards }) {
                 <div className="lp-flip-copy">
                   <h3>{card.title}</h3>
                   <p className="lp-event-meta">
-                    {card.date} <span>|</span> {card.place}
+                    {card.date}
+                    {card.place ? <> <span>|</span> {card.place}</> : null}
                   </p>
                   <a className="lp-event-more" href={card.moreHref || "#contacto"}>
                     Más info
@@ -71,7 +72,7 @@ export function ScrollSplitEvents({ imageSrc, cards }) {
                       ? { target: "_blank", rel: "noreferrer" }
                       : {})}
                   >
-                    Inscribirme &gt;
+                    {card.ctaLabel || "Revisar"}
                   </a>
                 </div>
               </motion.div>

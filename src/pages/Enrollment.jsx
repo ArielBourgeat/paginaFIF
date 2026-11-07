@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SiteFooter } from "../components/SiteFooter";
 import { assistanceWhatsAppUrl, formatEnrollmentPaymentMessage } from "../data/org";
-import { ACADEMIC_GOALS, ENROLLMENT_FEES, GRADES, SCHOLARSHIPS, SCHOOL_TYPES, emptyEnrollment } from "../data/enrollments";
+import { ACADEMIC_GOALS, ENROLLMENT_FEES, GRADES, SCHOOL_TYPES, emptyEnrollment, schoolTypeLabel } from "../data/enrollments";
 import "./Enrollment.css";
 
 const STEPS = [
@@ -78,13 +78,6 @@ export default function Enrollment() {
     });
   };
 
-  const toggleScholarship = (id) => {
-    setForm((current) => {
-      const has = current.scholarships.includes(id);
-      return { ...current, scholarships: has ? current.scholarships.filter((item) => item !== id) : [...current.scholarships, id] };
-    });
-  };
-
   const fees = ENROLLMENT_FEES[form.schoolType];
 
   const validate = () => {
@@ -92,7 +85,7 @@ export default function Enrollment() {
       return "Completa los datos del representante.";
     }
     if (step === 2 && (!form.studentName || !form.studentId || !form.birthDate || !form.school || !form.schoolType || !form.grade || !form.city || !form.sector)) {
-      return "Completa los datos del estudiante, incluida la institución fiscal o particular.";
+      return "Completa los datos del estudiante, incluido el tipo de institución.";
     }
     if (step === 3 && (!form.contests || !form.extraPrep || !form.goals.length)) {
       return "Indica la información académica y al menos una expectativa.";
@@ -135,7 +128,7 @@ export default function Enrollment() {
     // Hasta tener Supabase la solicitud solo viaja por WhatsApp; no se guardan datos del menor en este navegador.
     const record = {
       ...form,
-      scholarshipLabels: form.scholarships.map((id) => SCHOLARSHIPS.find((item) => item.id === id)?.label || id),
+      scholarshipLabels: [],
     };
     window.open(assistanceWhatsAppUrl(formatEnrollmentPaymentMessage(record)), "_blank", "noopener,noreferrer");
     setDone(true);
@@ -213,7 +206,7 @@ export default function Enrollment() {
               <Field id="school" label="Institución educativa">
                 <input id="school" value={form.school} onChange={(event) => set("school", event.target.value)} />
               </Field>
-              <fieldset className="en-choice en-field">
+              <fieldset className="en-choice en-field en-school-type">
                 <legend>Tipo de institución</legend>
                 {SCHOOL_TYPES.map((type) => (
                   <label key={type.id}>
@@ -249,7 +242,7 @@ export default function Enrollment() {
             </div>
             {fees && (
               <div className="en-fees">
-                <p>Inscripción {form.schoolType === "fiscal" ? "fiscal" : "particular"}: <strong>${fees.inscription}</strong></p>
+                <p>Inscripción {schoolTypeLabel(form.schoolType).toLowerCase()}: <strong>${fees.inscription}</strong></p>
                 <p>{fees.extraLabel}: <strong>${fees.extra}</strong></p>
               </div>
             )}
@@ -320,7 +313,7 @@ export default function Enrollment() {
                 <div><dt>Estudiante</dt><dd>{form.studentName}</dd></div>
                 <div><dt>Documento del estudiante</dt><dd>{form.studentId}</dd></div>
                 <div><dt>Nacimiento</dt><dd>{form.birthDate}</dd></div>
-                <div><dt>Institución</dt><dd>{form.school} · {form.schoolType === "fiscal" ? "Fiscal" : "Particular"}</dd></div>
+                <div><dt>Institución</dt><dd>{form.school} · {schoolTypeLabel(form.schoolType)}</dd></div>
                 <div><dt>Grado</dt><dd>{form.grade}</dd></div>
                 <div><dt>Residencia</dt><dd>{form.city} · {form.sector}</dd></div>
                 <div><dt>Concursos</dt><dd>{form.contests === "si" ? "Sí" : "No"}</dd></div>
@@ -338,20 +331,11 @@ export default function Enrollment() {
               </p>
               {fees && (
                 <div className="en-fees">
-                  <h2>Valores {form.schoolType === "fiscal" ? "fiscal" : "particular"}</h2>
+                  <h2>Valores {schoolTypeLabel(form.schoolType).toLowerCase()}</h2>
                   <p>Inscripción: <strong>${fees.inscription}</strong></p>
                   <p>{fees.extraLabel}: <strong>${fees.extra}</strong></p>
                 </div>
               )}
-              <fieldset className="en-goals">
-                <legend>Información de becas (opcional)</legend>
-                {SCHOLARSHIPS.map((item) => (
-                  <label key={item.id}>
-                    <input type="checkbox" checked={form.scholarships.includes(item.id)} onChange={() => toggleScholarship(item.id)} />
-                    {item.label}
-                  </label>
-                ))}
-              </fieldset>
               <h2>Formulario de pago</h2>
               <p className="en-note">No hay cobro en la web. Completa el formulario y se abre WhatsApp para coordinar el pago de la inscripción con FIF.</p>
               <div className="en-grid">

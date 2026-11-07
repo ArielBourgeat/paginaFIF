@@ -9,6 +9,7 @@ html.lp-html {
   --lp-navy: #10233a;
   --lp-gold: #e8c36a;
   --lp-orange: #f0a020;
+  --lp-brand: rgb(240, 131, 0);
   color: #111;
   background: #fff;
 }
@@ -107,6 +108,12 @@ html.lp-html {
   font-weight: 800;
   letter-spacing: 0.42em;
   text-transform: uppercase;
+  color: var(--lp-blue);
+  transition: color 0.2s ease;
+}
+
+.lp-nav.is-on-hero .lp-nav-caption {
+  color: #fff;
 }
 
 .lp-nav-list {
@@ -1193,16 +1200,22 @@ html.lp-html {
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: 28px 22px;
+  min-height: 100%;
+  padding: 32px 24px;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
 }
 
 .lp-flip-copy h3 {
   font-family: "Nunito", sans-serif;
-  font-size: clamp(22px, 2.2vw, 32px);
+  font-size: clamp(20px, 2.2vw, 30px);
   font-weight: 800;
-  margin: 0 0 10px;
+  margin: 0;
   color: inherit;
+  line-height: 1.15;
 }
 
 .lp-event-meta {
@@ -1210,6 +1223,7 @@ html.lp-html {
   font-size: 14px;
   font-weight: 600;
   color: inherit;
+  line-height: 1.45;
 }
 
 .lp-event-meta span {
@@ -1222,7 +1236,7 @@ html.lp-html {
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 3px;
-  margin: 16px 0 18px;
+  margin: 4px 0 8px;
   font-weight: 700;
 }
 
@@ -1231,16 +1245,17 @@ html.lp-html {
   align-items: center;
   justify-content: center;
   min-width: 148px;
-  background: #f0c014;
+  margin-top: auto;
+  background: var(--lp-brand);
   color: #fff;
   font-weight: 800;
   font-size: 14px;
-  padding: 11px 18px;
+  padding: 12px 20px;
   border-radius: 2px;
 }
 
 .lp-event-register:hover {
-  background: #e0b010;
+  background: #d47400;
 }
 
 /* Velocity + donate: tight spacing */
@@ -1309,7 +1324,7 @@ html.lp-html {
 }
 
 .lp-donate-card,
-.lp-media a {
+.lp-media > a {
   background: #eef5fc;
   border: 1px solid #d5e6f7;
   border-radius: 24px;
@@ -1317,7 +1332,37 @@ html.lp-html {
   color: #111;
 }
 
-.lp-media a strong {
+.lp-media a strong,
+.lp-media-block strong {
+  color: var(--lp-blue);
+}
+
+.lp-media-block {
+  background: #eef5fc;
+  border: 1px solid #d5e6f7;
+  border-radius: 24px;
+  padding: 24px;
+  color: #111;
+  text-align: left;
+}
+
+.lp-media-block p {
+  margin: 8px 0 16px;
+}
+
+.lp-podcast-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lp-podcast-links a {
+  background: #fff;
+  border: 1px solid #d5e6f7;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 800;
   color: var(--lp-blue);
 }
 
@@ -1528,6 +1573,53 @@ html.lp-html {
   color: #fff;
 }
 
+@media (max-width: 1100px) {
+  .lp-events {
+    height: auto;
+  }
+
+  .lp-events-pin {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    padding: 48px 0 32px;
+  }
+
+  .lp-split {
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    width: calc(100% - 32px);
+    max-width: 640px;
+    margin: 0 auto;
+    gap: 16px;
+  }
+
+  .lp-flip {
+    width: 100%;
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 280px;
+    transform: none !important;
+  }
+
+  .lp-flip-front {
+    display: none;
+  }
+
+  .lp-flip-back {
+    position: relative;
+    inset: auto;
+    transform: none;
+    border-radius: 24px;
+    min-height: 280px;
+  }
+
+  .lp-flip-copy {
+    min-height: 280px;
+  }
+}
+
 @media (max-width: 900px) {
   .lp-hero {
     height: auto;
@@ -1577,9 +1669,48 @@ html.lp-html {
     height: 220px;
   }
   .lp-split {
-    height: 42vh;
-    min-height: 240px;
-    margin: 0 16px;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    width: calc(100% - 32px);
+    max-width: 640px;
+    margin: 0 auto;
+    gap: 16px;
+  }
+
+  .lp-events {
+    height: auto;
+  }
+
+  .lp-events-pin {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    padding: 48px 0 32px;
+  }
+
+  .lp-flip {
+    width: 100%;
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 280px;
+    transform: none !important;
+  }
+
+  .lp-flip-front {
+    display: none;
+  }
+
+  .lp-flip-back {
+    position: relative;
+    inset: auto;
+    transform: none;
+    border-radius: 24px;
+    min-height: 280px;
+  }
+
+  .lp-flip-copy {
+    min-height: 280px;
   }
 }
 

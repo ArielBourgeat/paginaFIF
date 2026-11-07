@@ -7,10 +7,8 @@ import { VelocityText } from "../components/VelocityText";
 import { ScrollSplitEvents } from "../components/ScrollSplitEvents";
 import { Testimonials } from "../components/Testimonials";
 import { RequestFormModal } from "../components/RequestFormModal";
-import { Wordmark } from "../components/Brand";
 import { ORG, assistanceWhatsAppUrl } from "../data/org";
 import { useSlowPageScroll } from "../hooks/useSlowPageScroll";
-import { PLATFORM_ENABLED } from "../config";
 import "./Landing.css";
 
 const SECTIONS = [
@@ -22,7 +20,6 @@ const SECTIONS = [
   { id: "dona", title: "Dona ahora" },
   { id: "colaboradores", title: "Colaboradores" },
   { id: "multimedia", title: "Multimedia" },
-  { id: "fif-learning", title: "FIF Learning" },
   { id: "contacto", title: "Contacto" },
 ];
 
@@ -55,11 +52,11 @@ const ABOUT_BANDS = [
 
 const TEAM = [
   {
-    name: "Diego y Gaby",
+    name: "Diego y Gabi",
     image: "/images/Diego_Gaby.avif",
   },
   {
-    name: "Anabelle Chacon",
+    name: "Anabelle Chacón",
     image: "/images/Anabelle_Chacon.avif",
   },
   {
@@ -86,12 +83,13 @@ const PROJECT_IMAGES = [
 const EVENTS = [
   {
     title: "Clases y atención",
-    date: "Martes y jueves 3:00 pm – 5:00 pm",
-    place: "Sábados 8:00 am – 12:00 pm",
+    date: "Sábados 7:30 am – 1:00 pm",
+    place: "Fundación Integral de Familias",
     bgColor: "#5b9cf5",
     textColor: "#ffffff",
     moreHref: "#contacto",
     registerHref: "#contacto",
+    ctaLabel: "Ver horarios",
   },
   {
     title: "Conversando con los profes",
@@ -101,6 +99,7 @@ const EVENTS = [
     textColor: "#16362d",
     moreHref: "#multimedia",
     registerHref: "#multimedia",
+    ctaLabel: "Escuchar",
   },
   {
     title: "Concursos matemáticos",
@@ -110,6 +109,7 @@ const EVENTS = [
     textColor: "#4a1f1c",
     moreHref: "#contacto",
     registerHref: "/inscripciones",
+    ctaLabel: "Inscribirme",
   },
 ];
 
@@ -121,9 +121,7 @@ const ALLIES = [
 ];
 
 const HOURS = [
-  { day: "Martes", time: "3:00 pm – 5:00 pm" },
-  { day: "Jueves", time: "3:00 pm – 5:00 pm" },
-  { day: "Sábado", time: "8:00 am – 12:00 pm" },
+  { day: "Sábado", time: "7:30 am – 1:00 pm" },
 ];
 
 function clamp(value) {
@@ -303,8 +301,8 @@ export default function Landing() {
         </div>
       )}
 
-      <nav className="lp-nav" aria-label="Secciones de la página">
-        <p className="lp-nav-caption">Menu</p>
+      <nav className={`lp-nav${active === "inicio" ? " is-on-hero" : ""}`} aria-label="Secciones de la página">
+        <p className="lp-nav-caption">Menú</p>
         <ul className="lp-nav-list">
           {SECTIONS.map((section) => (
             <li key={section.id}>
@@ -343,9 +341,6 @@ export default function Landing() {
                 <div className="lp-hero-actions">
                   <a href="#dona" className="lp-hero-cta" onClick={goTo("dona")}>Dona hoy</a>
                   <Link to="/inscripciones" className="lp-hero-cta lp-hero-cta-enroll">Inscripciones</Link>
-                  {PLATFORM_ENABLED && (
-                    <Link to="/fif-learning" className="lp-hero-cta lp-hero-cta-learning">FIF LEARNING</Link>
-                  )}
                 </div>
                 <p className="lp-scroll-hint">Desliza</p>
               </div>
@@ -532,32 +527,24 @@ export default function Landing() {
             <p className="lp-kicker">Multimedia</p>
             <h2>Podcast y YouTube</h2>
             <div className="lp-media">
-              <a href={ORG.social.podcast} target="_blank" rel="noreferrer">
+              <div className="lp-media-block">
                 <span>Podcast</span>
-                <strong>Conversando con los Profes</strong>
-              </a>
+                <strong>Conversa con los profes</strong>
+                <p>Escúchalo en todas las plataformas donde está publicado.</p>
+                <div className="lp-podcast-links">
+                  {ORG.social.podcastPlatforms.map((platform) => (
+                    <a key={platform.name} href={platform.url} target="_blank" rel="noreferrer">
+                      {platform.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
               <a href={ORG.social.youtube} target="_blank" rel="noreferrer">
                 <span>YouTube</span>
                 <strong>Canal FIF</strong>
               </a>
             </div>
           </FadeIn>
-        </section>
-
-        <section className="lp-portal" id="fif-learning">
-          <div className="lp-portal-frame">
-            <img src="/images/Image1.jpg" alt="" loading="lazy" decoding="async" />
-            <div className="lp-portal-copy">
-              <p className="lp-kicker">Portal</p>
-              <h2 className="lp-portal-wordmark"><Wordmark size="lg" /></h2>
-              <p>El espacio digital de refuerzo académico para estudiantes, familias y docentes.</p>
-              {PLATFORM_ENABLED ? (
-                <Link to="/fif-learning" className="lp-hero-cta">Entrar al portal</Link>
-              ) : (
-                <span className="lp-hero-cta" aria-disabled="true">Muy pronto</span>
-              )}
-            </div>
-          </div>
         </section>
 
         <section className="lp-plain" id="contacto">
@@ -572,7 +559,6 @@ export default function Landing() {
                 <a href={wa} target="_blank" rel="noreferrer">WhatsApp</a>
                 <p>{ORG.legalAddress}</p>
                 <p>{ORG.ruc}</p>
-                {PLATFORM_ENABLED && <Link to="/admin" className="lp-admin-ghost">Coordinación</Link>}
               </article>
               <article className="lp-contact-card">
                 <h3>Horarios</h3>
