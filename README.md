@@ -115,6 +115,25 @@ Docentes y coordinación **no** comparten login. Un admin no entra por `/profeso
 ---
 
 ## 4. Dónde están los datos (no hay base de datos todavía)
+## 5. Landing institucional (`/`): qué hay ahora
+
+Fondo blanco, menú lateral de líneas (hover muestra el título), chip **Dona hoy**. Scroll de página suavizado y más lento (`src/hooks/useSlowPageScroll.js`).
+
+| Sección | Qué hace |
+|---|---|
+| **Inicio** | Recuadro redondeado con `videoInicio.mp4` a fill. Título *Fundación Integral de Familias* en Nunito (tres líneas). Al hacer scroll el recuadro se encoge al centro y desaparece. |
+| **Nosotros** | Zigzag con foto: Quiénes somos (texto izq. / foto der.), Misión (foto izq. / texto der.), Nuestro trabajo, Visión. El texto entra con **Kinetic Text Reveal** (palabras, blur, dirección). |
+| **Proyectos** | Título centrado y carrusel infinito tipo fisheye de fotos de talleres. |
+| **Eventos** | **Scroll Split Card**: 1) una imagen completa, 2) se parte en tres, 3) las tarjetas se voltean y muestran los tres eventos (Soul Concert, Modern Ballet, Album Launch). *More info* va a contacto; *Register Now* abre WhatsApp. |
+| **Dona ahora** | Franja dorada `DONA AHORA` + tarjetas de donación individual y organización. |
+| **Colaboradores** | Carrusel continuo de logos (USFQ PASEC, Mil Travesuras, K-School, ALEKS). |
+| **Multimedia** | Enlaces a podcast *Conversa con los Profes* y canal de YouTube. |
+| **FIF Learning (portal)** | Recuadro con foto de taller y wordmark de colores **FIF LEARNING**. Botón al portal `/fif-learning`. |
+| **Contacto** | Tres tarjetas: datos, horarios y redes. |
+
+Horarios: martes y jueves 3:00 pm – 5:00 pm; sábado 8:30 am – 12:30 pm.
+
+Referencias de animación: [Kinetic Text Reveal](https://componentry.dev/docs/components/kinetic-text-reveal) y [Scroll Split Card](https://componentry.dev/docs/components/scroll-split-card).
 
 **Hoy no hay Postgres, ni API, ni servidor propio.** Todo lo de FIF Learning vive en el **navegador**, en `localStorage`, clave:
 
